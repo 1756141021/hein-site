@@ -31,7 +31,18 @@
 - theme `light`，lang `zh-CN`
 - **待办：装 giscus GitHub App**（https://github.com/apps/giscus，选 hein-site 仓库）。装之前 iframe 显示 "giscus is not installed"。
 
-图片占位符（`<image-slot>`）尚未填充实际图片。
+### 图片（固定文件名约定）
+
+10 个 `<image-slot>` 已全部填图。`<image-slot>` 吃 `src` 属性（脚本第 605 行 `srcAttr` 直通），所以换图 = 按同名替换 `public/images/` 下的文件，**无需改代码**：
+
+| 文件名 | 位置 |
+|--------|------|
+| `hero.png` | 首页主视觉相框 |
+| `avatar.png` | 关于页头像 |
+| `art-1.png` ~ `art-8.png` | 画廊 bento 8 格 |
+
+起始图是 4 张角色原图压到网页尺寸（1200/900px）后铺上去的占位，随时可换。
+注意：拖拽填图只在原 bundler 的 omelette 运行时有效，静态站上是只读的，只能用 `src`/换文件。
 
 ### 访问方式（重要）
 
@@ -70,8 +81,8 @@
 ## 待办
 
 - [ ] **装 giscus GitHub App**（https://github.com/apps/giscus → 选 hein-site）—— 留言板生效的最后一步
-- [ ] 填充 image-slot 占位符（hero、avatar、gallery 8 格）
-- [ ] 从 ComfyUI output 精选更多图片
+- [x] ~~填充 image-slot 占位符~~（10 个位已填，固定文件名约定）
+- [ ] 从 ComfyUI output 精选实际作品替换起始图
 - [x] ~~接入 Giscus 替换本地 localStorage 留言板~~（代码已接好，等装 App）
 - [ ] 部署到 Cloudflare Pages
 - [x] ~~解包 bundled HTML~~（已解成 public/index.html）
