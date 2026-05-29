@@ -46,18 +46,18 @@
 
 ### 访问方式（重要）
 
-- **线上**：https://heins-corner.pages.dev ✓（已部署）
+- **线上**：https://heins-corner.xiluozicanyue.workers.dev ✓（Workers Builds，连 GitHub 自动部署）
 - **生产构建**：`npm run build` → `dist/`（public/ 原样拷贝，0 个 astro 页面）。`public/index.html` 在根，`/` 直接出页面。
 - **本地 Astro dev**：dev server 不把 `public/index.html` 映射到裸 `/`（会 404），需走 `/index.html`。这是 dev 特性，不影响生产。
 - dev 端口默认 4321，被占用时自动漂移（4322…）。启动前用 `Get-NetTCPConnection -LocalPort 4321` 清掉僵尸进程。
 
-### 部署（Cloudflare Pages）
+### 部署（Cloudflare Workers Builds，自动）
 
-- 项目名 `heins-corner`，账户 ID `9794cbd437041b31ec5df7d0eadab590`
-- 手动部署：`npx wrangler pages deploy dist --project-name=heins-corner --branch=master`
-  需先 `export CLOUDFLARE_API_TOKEN=<token>`（API token，权限 Edit Cloudflare Workers）
-- **wrangler OAuth 登录在本机走不通**：localhost 回调被解析成 IPv6 ::1 但 wrangler 监听 127.0.0.1，且 Cloudflare 同意页加载要 ~2 分钟超过 wrangler 超时；脚本直接打 dash.cloudflare.com/oauth2/token 会撞 JS 反爬挑战。所以用 API token 走 api.cloudflare.com，绕开全部坑。
-- **更省事的后续方案**：Cloudflare 后台把 Pages 连到 GitHub `hein-site` 仓库，以后 `git push` 自动部署，不用 token。
+- 项目名 `heins-corner`，账户 ID `9794cbd437041b31ec5df7d0eadab590`，账户子域 `xiluozicanyue`
+- **已连 GitHub 自动部署**：Cloudflare 后台 Workers & Pages → 连 `hein-site` 仓库。以后 `git push origin master` 自动重新部署，无需 token、无需命令行。
+- 配置：`wrangler.jsonc`（`assets.directory = ./public`），Build command 留空，Deploy command `npx wrangler deploy`。纯静态资源，不跑构建。
+- 网址是 `*.workers.dev`（新版 Workers 流程），不是 `.pages.dev`。之前 CLI 直传建的 `heins-corner` Pages 项目可删（已被这个取代）。
+- **历史踩坑**：wrangler OAuth 登录在本机走不通——localhost 回调被解析成 IPv6 ::1 但 wrangler 监听 127.0.0.1，且 Cloudflare 同意页加载要 ~2 分钟超过 wrangler 超时；脚本直接打 dash.cloudflare.com/oauth2/token 撞 JS 反爬挑战。最终改 GitHub 自动部署绕开全部。
 
 ## 技术栈
 
