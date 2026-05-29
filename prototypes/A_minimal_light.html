@@ -1,0 +1,507 @@
+<!-- Prototype A: Minimal Light -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hein — Developer & Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #FAFAF8;
+    color: #2C2C2C;
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- Nav ---- */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 250, 248, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid #E8E6E1;
+    padding: 0 2rem;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  nav .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2C2C2C;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  nav .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  nav .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: #6B6B6B;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  nav .nav-links a:hover {
+    color: #C17C5E;
+  }
+
+  /* ---- Sections ---- */
+  section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ---- Hero ---- */
+  .hero {
+    min-height: calc(100vh - 52px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    animation: heroFadeIn 1.2s ease both;
+  }
+
+  @keyframes heroFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero .tagline {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: #888;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .hero .hero-line {
+    width: 48px;
+    height: 1px;
+    background: #C17C5E;
+    margin-top: 2.5rem;
+  }
+
+  /* ---- Works ---- */
+  .works {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #C17C5E;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #1A1A1A;
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+  }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .card {
+    border: 1px solid #E8E6E1;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #FFFFFF;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: #D4CFC7;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+  }
+
+  .card-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    display: block;
+  }
+
+  .card-body {
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #1A1A1A;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    color: #7A7A7A;
+    line-height: 1.6;
+    margin-bottom: 0.9rem;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.03em;
+    padding: 0.2rem 0.55rem;
+    border: 1px solid #E2DED7;
+    border-radius: 3px;
+    color: #8A8278;
+    background: #FAFAF8;
+    white-space: nowrap;
+  }
+
+  /* Thumb color palette */
+  .thumb-1 { background: #C17C5E; }
+  .thumb-2 { background: #B8C4B8; }
+  .thumb-3 { background: #D4B896; }
+  .thumb-4 { background: #A3B5C9; }
+  .thumb-5 { background: #C9A3B5; }
+  .thumb-6 { background: #8B9DAF; }
+
+  /* ---- About ---- */
+  .about {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+    border-top: 1px solid #E8E6E1;
+  }
+
+  .about-text {
+    font-size: 1.05rem;
+    color: #4A4A4A;
+    line-height: 2;
+    max-width: 580px;
+    margin-bottom: 1.5rem;
+  }
+
+  .subtle-link {
+    font-size: 0.9rem;
+    color: #C17C5E;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+    font-weight: 400;
+  }
+
+  .subtle-link:hover {
+    border-bottom-color: #C17C5E;
+  }
+
+  /* ---- Guestbook ---- */
+  .guestbook {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+    border-top: 1px solid #E8E6E1;
+  }
+
+  .guestbook-inner {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  /* ---- Footer ---- */
+  footer {
+    border-top: 1px solid #E8E6E1;
+    padding: 2.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: #AAAAAA;
+    letter-spacing: 0.02em;
+  }
+
+  .footer-github {
+    display: inline-flex;
+    align-items: center;
+    color: #AAAAAA;
+    transition: color 0.2s ease;
+  }
+
+  .footer-github:hover {
+    color: #C17C5E;
+  }
+
+  .footer-github svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
+  /* ---- Mobile ---- */
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: #2C2C2C;
+    margin: 5px 0;
+    transition: all 0.2s ease;
+  }
+
+  @media (max-width: 768px) {
+    .works-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    nav {
+      padding: 0 1.25rem;
+    }
+
+    nav .nav-links {
+      display: none;
+    }
+
+    .nav-toggle {
+      display: block;
+    }
+
+    section {
+      padding: 0 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+    }
+
+    .works {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .works-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .section-heading {
+      font-size: 1.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .about {
+      padding-top: 3rem;
+      padding-bottom: 4rem;
+    }
+
+    footer {
+      padding: 2rem 1.25rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a href="#hero" class="nav-logo">Hein</a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#guestbook">Guestbook</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Menu">
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <h1>Hein</h1>
+  <p class="tagline">Developer & Creator</p>
+  <div class="hero-line"></div>
+</section>
+
+<!-- Works -->
+<section class="works" id="works">
+  <p class="section-label">Selected Works</p>
+  <h2 class="section-heading">Things I've Built</h2>
+  <div class="works-grid">
+
+    <div class="card">
+      <div class="card-thumb thumb-1"></div>
+      <div class="card-body">
+        <h3 class="card-title">HainTag</h3>
+        <p class="card-desc">AI 驱动的图像标签生成器，为创作者简化工作流程。</p>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">PyQt6</span>
+          <span class="tag">AI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb thumb-2"></div>
+      <div class="card-body">
+        <h3 class="card-title">Krita NAI Plugin</h3>
+        <p class="card-desc">在 Krita 内直接调用 NovelAI 生成图像的插件。</p>
+        <div class="card-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Plugin</span>
+          <span class="tag">Krita</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb thumb-3"></div>
+      <div class="card-body">
+        <h3 class="card-title">Score Modifier</h3>
+        <p class="card-desc">轻量级评分调节工具，精确控制生成参数。</p>
+        <div class="card-tags">
+          <span class="tag">C#</span>
+          <span class="tag">Desktop</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb thumb-4"></div>
+      <div class="card-body">
+        <h3 class="card-title">Session Manager</h3>
+        <p class="card-desc">VS Code 扩展，管理和恢复 Claude 会话上下文。</p>
+        <div class="card-tags">
+          <span class="tag">TypeScript</span>
+          <span class="tag">VS Code</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb thumb-5"></div>
+      <div class="card-body">
+        <h3 class="card-title">角色立绘集</h3>
+        <p class="card-desc">原创角色设计与插画，Gothic 风格为主。</p>
+        <div class="card-tags">
+          <span class="tag">Illustration</span>
+          <span class="tag">UI Design</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-thumb thumb-6"></div>
+      <div class="card-body">
+        <h3 class="card-title">ComfyUI Workflows</h3>
+        <p class="card-desc">定制化的图像生成流程，集成多种模型与后处理。</p>
+        <div class="card-tags">
+          <span class="tag">ComfyUI</span>
+          <span class="tag">Workflow</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <p class="section-label">About</p>
+  <h2 class="section-heading">关于我</h2>
+  <p class="about-text">
+    写代码，也画画。大部分时间在折腾工具链和生成式 AI。喜欢把复杂的东西做成顺手的小工具，然后自己用。偶尔写点东西，大多数时候不发出来。
+  </p>
+  <a href="#" class="subtle-link">了解更多 →</a>
+</section>
+
+<!-- Guestbook -->
+<section class="guestbook" id="guestbook">
+  <p class="section-label">Guestbook</p>
+  <h2 class="section-heading">留言簿</h2>
+  <div class="guestbook-inner">
+    <a href="#" class="subtle-link">留下你的足迹 →</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <span class="footer-copy">&copy; 2026 Hein</span>
+  <a href="https://github.com/1756141021" class="footer-github" aria-label="GitHub" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </a>
+</footer>
+
+</body>
+</html>

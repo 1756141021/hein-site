@@ -1,0 +1,48 @@
+:root {
+  --bg: #d9e7f5;
+  --tile-a: #b8d5ef;
+  --tile-b: #c9defa;
+  --paper: #fffdf2;
+  --paper-2: #f7f4e6;
+  --ink: #1a1a2a;
+  --ink-soft: #4a4a5a;
+  --link: #1a3acc;
+  --visited: #6a1a8a;
+  --hot: #d4255a;
+  --gold: #ffd34a;
+  --frame: #4a5a8a;
+  --shadow: #2a3a6a;
+  --serif: "Cormorant Garamond", "Times New Roman", Times, serif;
+  --body-serif: "Times New Roman", Times, serif;
+  --mono: "VT323", monospace;
+  --hand: "Comic Neue", "Comic Sans MS", cursive;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body-serif);
+  color: var(--ink);
+  font-size: 14.5px;
+  line-height: 1.55;
+  background:
+    radial-gradient(ellipse 40px 24px at 20% 30%, rgba(255,255,255,0.7), transparent 70%),
+    radial-gradient(ellipse 60px 30px at 70% 60%, rgba(255,255,255,0.8), transparent 70%),
+    radial-gradient(ellipse 50px 28px at 45% 80%, rgba(255,255,255,0.6), transparent 70%),
+    linear-gradient(180deg, var(--tile-a) 0%, var(--tile-b) 100%);
+  background-size: 240px 180px, 240px 180px, 240px 180px, 100% 100%;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: hidden;
+}
+
+a { color: var(--link); }
+a:visited { color: var(--visited); }
+a:hover { color: var(--hot); }
+
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes scroll-mq { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes hand-bob { 50% { transform: translateY(4px) rotate(-2deg); } }

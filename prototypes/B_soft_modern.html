@@ -1,0 +1,617 @@
+<!-- Prototype B: Soft Modern -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hein — Developer & Creator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --accent: #7C5CFC;
+    --accent-light: #A78BFA;
+    --accent-warm: #F5A623;
+    --bg: #FAFAF8;
+    --bg-warm: #FFF8F0;
+    --card-bg: #FFFFFF;
+    --text: #1A1A2E;
+    --text-secondary: #6B7084;
+    --radius: 20px;
+    --radius-sm: 12px;
+    --radius-pill: 999px;
+    --shadow-soft: 0 2px 8px rgba(124, 92, 252, 0.06), 0 8px 32px rgba(124, 92, 252, 0.04);
+    --shadow-hover: 0 4px 16px rgba(124, 92, 252, 0.12), 0 12px 48px rgba(124, 92, 252, 0.08);
+    --shadow-nav: 0 4px 24px rgba(124, 92, 252, 0.08);
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'DM Serif Display', Georgia, serif;
+    --max-width: 1120px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text);
+    background: linear-gradient(180deg, #FDFCFB 0%, #FAF8F5 40%, #F8F6F2 100%);
+    min-height: 100vh;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  .nav {
+    position: sticky;
+    top: 16px;
+    z-index: 100;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(1.6);
+    -webkit-backdrop-filter: blur(20px) saturate(1.6);
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(124, 92, 252, 0.08);
+    box-shadow: var(--shadow-nav);
+  }
+
+  .nav-logo {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--accent);
+    padding: 6px 16px;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 8px 18px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    border-radius: var(--radius-pill);
+    transition: all 0.25s ease;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent);
+    background: rgba(124, 92, 252, 0.07);
+  }
+
+  /* ─── SECTIONS ─── */
+  section {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 140px;
+    padding-bottom: 100px;
+    animation: fadeInHero 1s ease-out both;
+  }
+
+  @keyframes fadeInHero {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-name {
+    font-family: var(--font-heading);
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--accent) 0%, #9B7BFC 40%, var(--accent-warm) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+    animation: fadeInHero 1s ease-out 0.3s both;
+  }
+
+  .hero-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-warm);
+    border-radius: 50%;
+    margin: 0 12px;
+    vertical-align: middle;
+    opacity: 0.7;
+  }
+
+  /* ─── WORKS ─── */
+  .works {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom: 48px;
+    text-align: center;
+    color: var(--text);
+  }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .work-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(124, 92, 252, 0.04);
+    transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.35s ease;
+    cursor: pointer;
+  }
+
+  .work-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .work-card:nth-child(2) { margin-top: 32px; }
+  .work-card:nth-child(5) { margin-top: 32px; }
+
+  .work-thumb {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 0;
+  }
+
+  .work-thumb.grad-1 { background: linear-gradient(135deg, #7C5CFC, #A78BFA); }
+  .work-thumb.grad-2 { background: linear-gradient(135deg, #F5A623, #FCCA67); }
+  .work-thumb.grad-3 { background: linear-gradient(135deg, #7C5CFC, #F5A623); }
+  .work-thumb.grad-4 { background: linear-gradient(135deg, #6DD5FA, #7C5CFC); }
+  .work-thumb.grad-5 { background: linear-gradient(135deg, #F5A623, #FF6B6B); }
+  .work-thumb.grad-6 { background: linear-gradient(135deg, #A78BFA, #6DD5FA); }
+
+  .work-body {
+    padding: 20px 22px 24px;
+  }
+
+  .work-title {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .work-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .work-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 4px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: var(--radius-pill);
+    background: rgba(124, 92, 252, 0.07);
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+
+  .tag.warm {
+    background: rgba(245, 166, 35, 0.1);
+    color: #D48B0A;
+  }
+
+  /* ─── ABOUT ─── */
+  .about {
+    padding-top: 40px;
+    padding-bottom: 80px;
+  }
+
+  .about-card {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 48px 44px;
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(124, 92, 252, 0.04);
+    transition: box-shadow 0.35s ease;
+  }
+
+  .about-card:hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .about-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-warm));
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-avatar::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 50%;
+    background: var(--card-bg);
+    opacity: 0.3;
+  }
+
+  .about-text h3 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+  }
+
+  /* ─── GUESTBOOK ─── */
+  .guestbook {
+    padding-top: 40px;
+    padding-bottom: 100px;
+  }
+
+  .guestbook-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #FFF8F0 0%, #FFF5EB 100%);
+    border-radius: var(--radius);
+    padding: 56px 44px;
+    text-align: center;
+    box-shadow: 0 2px 12px rgba(245, 166, 35, 0.06), 0 8px 40px rgba(245, 166, 35, 0.04);
+    border: 1px solid rgba(245, 166, 35, 0.08);
+  }
+
+  .guestbook-inner h2 {
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 3vw, 1.9rem);
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  .guestbook-inner p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+
+  .btn-hello {
+    display: inline-block;
+    padding: 14px 40px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    border: none;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(124, 92, 252, 0.25);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-hello:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(124, 92, 252, 0.35);
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 28px 48px;
+  }
+
+  .footer-inner {
+    border-top: 1px solid rgba(124, 92, 252, 0.08);
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-copy {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .footer-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(124, 92, 252, 0.06);
+    color: var(--accent);
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+
+  .footer-links a:hover {
+    background: rgba(124, 92, 252, 0.12);
+    transform: translateY(-2px);
+  }
+
+  .footer-links svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 860px) {
+    .works-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .work-card:nth-child(2),
+    .work-card:nth-child(5) {
+      margin-top: 0;
+    }
+    .work-card:nth-child(even) {
+      margin-top: 24px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .nav {
+      top: 10px;
+      padding: 0 12px;
+    }
+    .nav-inner {
+      padding: 5px 6px;
+      gap: 2px;
+    }
+    .nav-logo {
+      font-size: 1rem;
+      padding: 6px 12px;
+    }
+    .nav-links a {
+      padding: 7px 12px;
+      font-size: 0.8rem;
+    }
+    .hero {
+      padding-top: 110px;
+      padding-bottom: 72px;
+    }
+    section {
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .works-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .work-card:nth-child(even) {
+      margin-top: 0;
+    }
+    .about-card {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 36px 28px;
+      gap: 20px;
+    }
+    .guestbook-inner {
+      padding: 40px 28px;
+    }
+    .footer-inner {
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">H.</a>
+    <ul class="nav-links">
+      <li><a href="#works">Works</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#guestbook">Guestbook</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <h1 class="hero-name">Hein</h1>
+  <p class="hero-tagline">Developer <span class="hero-dot"></span> Creator</p>
+</section>
+
+<!-- Works -->
+<section class="works" id="works">
+  <h2 class="section-title">Works</h2>
+  <div class="works-grid">
+
+    <div class="work-card">
+      <div class="work-thumb grad-1"></div>
+      <div class="work-body">
+        <h3 class="work-title">标签生成器</h3>
+        <p class="work-desc">基于本地模型的图像标签工具，支持批量处理和自定义词库。</p>
+        <div class="work-tags">
+          <span class="tag">Python</span>
+          <span class="tag warm">Desktop</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb grad-2"></div>
+      <div class="work-body">
+        <h3 class="work-title">会话管理器</h3>
+        <p class="work-desc">VS Code 扩展，管理和恢复开发会话上下文。</p>
+        <div class="work-tags">
+          <span class="tag">TypeScript</span>
+          <span class="tag warm">Extension</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb grad-3"></div>
+      <div class="work-body">
+        <h3 class="work-title">绘画插件</h3>
+        <p class="work-desc">Krita 的 AI 辅助生成插件，无缝接入创作流程。</p>
+        <div class="work-tags">
+          <span class="tag">Python</span>
+          <span class="tag warm">Plugin</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb grad-4"></div>
+      <div class="work-body">
+        <h3 class="work-title">工作流引擎</h3>
+        <p class="work-desc">节点式图像处理管线，可视化编排复杂生成任务。</p>
+        <div class="work-tags">
+          <span class="tag">ComfyUI</span>
+          <span class="tag warm">Workflow</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb grad-5"></div>
+      <div class="work-body">
+        <h3 class="work-title">评分修改器</h3>
+        <p class="work-desc">游戏数值调整工具，精确控制评分权重和阈值。</p>
+        <div class="work-tags">
+          <span class="tag">C#</span>
+          <span class="tag warm">Tool</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-card">
+      <div class="work-thumb grad-6"></div>
+      <div class="work-body">
+        <h3 class="work-title">个人站点</h3>
+        <p class="work-desc">你正在看的这个。从零搭建的作品集和留言板。</p>
+        <div class="work-tags">
+          <span class="tag">HTML</span>
+          <span class="tag warm">Design</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- About -->
+<section class="about" id="about">
+  <h2 class="section-title">About</h2>
+  <div class="about-card">
+    <div class="about-avatar"></div>
+    <div class="about-text">
+      <h3>海茵</h3>
+      <p>写代码也写故事。大部分时间在折腾工具链、画画、以及试图让 AI 听话。喜欢把复杂的东西拆成干净的小模块，然后假装这很容易。偶尔也会对着 bug 发呆半小时，觉得世界不讲道理。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Guestbook -->
+<section class="guestbook" id="guestbook">
+  <div class="guestbook-inner">
+    <h2>留言板</h2>
+    <p>路过的话留个脚印吧。随便说什么都好。</p>
+    <a href="#" class="btn-hello">Say Hello</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">&copy; 2026 Hein</span>
+    <div class="footer-links">
+      <a href="https://github.com/1756141021" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

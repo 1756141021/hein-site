@@ -1,0 +1,440 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import WorkCard from '../components/WorkCard.astro';
+import ArtworkStrip from '../components/ArtworkStrip.astro';
+import GalleryPreview from '../components/GalleryPreview.astro';
+---
+
+<Layout>
+  <Nav />
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-inner container">
+      <div class="hero-text">
+        <h1 class="hero-name animate-fade-up">Hein</h1>
+        <p class="hero-tagline animate-fade-up delay-1">写工具的时候在想画面，画画的时候在想结构。</p>
+        <div class="hero-line animate-fade-up delay-2"></div>
+        <p class="hero-status animate-fade-up delay-3">
+          <span class="status-icon">☽</span>
+          <span>最近在做: HainTag · 画了些新角色 · 搭这个网站</span>
+        </p>
+      </div>
+      <div class="hero-eyes animate-fade-in delay-2">
+        <div class="eye-piece eye-1">
+          <img src="/images/hero/eyes-red-fox-crop.png" alt="" />
+        </div>
+        <div class="eye-piece eye-2">
+          <img src="/images/hero/eyes-blue-maid-crop.png" alt="" />
+        </div>
+        <div class="eye-piece eye-3">
+          <img src="/images/hero/eyes-silver-snow-crop.png" alt="" />
+        </div>
+        <div class="eye-piece eye-4">
+          <img src="/images/hero/eyes-ice-twin-crop.png" alt="" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ArtworkStrip src="/images/hero/eyes-red-fox.png" position="center 60%" height="130px" />
+
+  <!-- Works -->
+  <section class="section" id="works">
+    <div class="container">
+      <SectionLabel label="作品" id="works-label" />
+      <div class="works-grid">
+        <WorkCard
+          title="HainTag"
+          description="AI 图片标签生成器。解析图片元数据，生成结构化标签，15 万+ Danbooru 词库。"
+          tags={["Python", "PyQt6", "LLM"]}
+          type="code"
+          thumbClass="thumb-circle"
+        />
+        <WorkCard
+          title="Krita NAI Plugin"
+          description="Krita 的 NovelAI 生成插件。支持文生图、图生图、局部重绘，直连 NAI API。"
+          tags={["Python", "Krita", "NovelAI"]}
+          type="code"
+          thumbClass="thumb-cross"
+        />
+        <WorkCard
+          title="Claude Session Manager"
+          description="VS Code 扩展，管理 Claude Code 的会话文件。树形浏览、元数据存储。"
+          tags={["TypeScript", "VS Code"]}
+          type="code"
+          thumbClass="thumb-diamond"
+        />
+        <WorkCard
+          title="ScoreModifier"
+          description="乐谱修改工具。C# 构建，处理特定格式的乐谱数据。"
+          tags={["C#", ".NET"]}
+          type="code"
+          thumbClass="thumb-corners"
+        />
+        <WorkCard
+          title="AI 角色画集"
+          description="个人 AI 绘画作品。角色设计、场景构图、风格探索。"
+          tags={["ComfyUI", "角色设计"]}
+          type="art"
+          href="/gallery"
+        />
+        <WorkCard
+          title="碎片"
+          description="黎明前最安静的时候，她听见自己的心跳，像是某种倒计时。不知道在计算什么，但每一下都认真得过分。"
+          tags={["短篇", "虚构"]}
+          type="writing"
+        />
+      </div>
+    </div>
+  </section>
+
+  <ArtworkStrip src="/images/hero/eyes-silver-snow.png" position="center 50%" height="120px" />
+
+  <!-- Gallery Preview -->
+  <GalleryPreview />
+
+  <ArtworkStrip src="/images/hero/eyes-blue-maid.png" position="center 35%" height="110px" />
+
+  <!-- About Teaser -->
+  <section class="section about-teaser">
+    <div class="container">
+      <SectionLabel label="关于" />
+      <div class="about-content">
+        <p class="about-text">
+          开发者，也画画，偶尔写东西。做工具的时候追求精确，画画的时候追求感觉。
+          大部分时间在和代码与像素打交道，偶尔抬头看看窗外。
+        </p>
+        <a href="/about" class="about-link">了解更多 →</a>
+      </div>
+    </div>
+  </section>
+
+  <ArtworkStrip src="/images/hero/eyes-ice-twin.png" position="center 45%" height="100px" />
+
+  <!-- Guestbook Teaser -->
+  <section class="section guestbook-teaser">
+    <div class="container guestbook-inner">
+      <div class="corner-tl"></div>
+      <div class="corner-br"></div>
+      <p class="guestbook-text">留下你的痕迹</p>
+      <a href="/guestbook" class="guestbook-link">前往留言板 →</a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    min-height: max(60vh, 480px);
+    display: flex;
+    align-items: center;
+    padding-top: 56px;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    width: 700px;
+    height: 550px;
+    background: radial-gradient(ellipse, rgba(212, 165, 116, 0.1) 0%, rgba(212, 165, 116, 0.04) 40%, transparent 70%);
+    animation: glowPulse 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-text {
+    flex: 1;
+    max-width: 440px;
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(4rem, 10vw, 7rem);
+    font-weight: 300;
+    color: var(--text-1);
+    letter-spacing: 0.06em;
+    line-height: 1;
+  }
+
+  .hero-tagline {
+    font-size: 0.92rem;
+    color: var(--text-2);
+    margin-top: 1rem;
+    line-height: 1.7;
+  }
+
+  .hero-line {
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+    margin: 1.25rem 0;
+  }
+
+  .hero-status {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--text-3);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .status-icon {
+    color: var(--accent);
+    font-size: 0.8rem;
+  }
+
+  /* ===== Eye Collage ===== */
+  .hero-eyes {
+    position: relative;
+    width: 560px;
+    height: 400px;
+    flex-shrink: 0;
+  }
+
+  .eye-piece {
+    position: absolute;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .eye-piece:hover {
+    border-color: rgba(212, 165, 116, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 165, 116, 0.08);
+  }
+
+  .eye-piece img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .eye-1 {
+    width: 360px;
+    height: 135px;
+    top: 10px;
+    left: -30px;
+    transform: rotate(-1.8deg);
+    z-index: 2;
+  }
+
+  .eye-2 {
+    width: 300px;
+    height: 125px;
+    top: 85px;
+    right: -15px;
+    transform: rotate(1.5deg);
+    z-index: 3;
+  }
+
+  .eye-3 {
+    width: 380px;
+    height: 130px;
+    top: 185px;
+    left: 10px;
+    transform: rotate(0.6deg);
+    z-index: 4;
+  }
+
+  .eye-4 {
+    width: 280px;
+    height: 115px;
+    top: 280px;
+    right: 10px;
+    transform: rotate(-2.2deg);
+    z-index: 1;
+    opacity: 0.88;
+  }
+
+  /* fade left edge — wider and softer */
+  .hero-eyes::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* fade bottom edge */
+  .hero-eyes::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -10px;
+    height: 60px;
+    background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  /* ===== Works Grid ===== */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .works-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .works-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ===== About Teaser ===== */
+  .about-content {
+    max-width: 640px;
+  }
+
+  .about-text {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--text-2);
+    line-height: 2;
+    text-wrap: pretty;
+  }
+
+  .about-link {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-size: 0.82rem;
+    color: var(--accent);
+    transition: color 0.3s ease;
+  }
+
+  .about-link:hover {
+    color: var(--accent-hover);
+  }
+
+  /* ===== Guestbook Teaser ===== */
+  .guestbook-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 3rem 2rem !important;
+  }
+
+  .corner-tl,
+  .corner-br {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: var(--accent);
+    border-style: solid;
+    opacity: 0.35;
+  }
+
+  .corner-tl {
+    top: 0;
+    left: 2rem;
+    border-width: 1px 0 0 1px;
+  }
+
+  .corner-br {
+    bottom: 0;
+    right: 2rem;
+    border-width: 0 1px 1px 0;
+  }
+
+  .guestbook-text {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--text-2);
+    letter-spacing: 0.04em;
+  }
+
+  .guestbook-link {
+    font-size: 0.82rem;
+    color: var(--accent);
+    border: 1px solid rgba(212, 165, 116, 0.2);
+    border-radius: 2px;
+    padding: 0.5rem 1.5rem;
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+
+  .guestbook-link:hover {
+    border-color: var(--accent);
+    background: rgba(212, 165, 116, 0.06);
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .hero-eyes {
+      width: 380px;
+      height: 320px;
+    }
+
+    .eye-1 { width: 260px; height: 100px; top: 5px; left: -15px; }
+    .eye-2 { width: 210px; height: 90px; top: 70px; right: -5px; }
+    .eye-3 { width: 270px; height: 95px; top: 145px; left: 5px; }
+    .eye-4 { width: 200px; height: 85px; top: 220px; right: 5px; }
+  }
+
+  @media (max-width: 640px) {
+    .hero-inner {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .hero-eyes {
+      width: 100%;
+      max-width: 400px;
+      height: 240px;
+    }
+
+    .hero-eyes::before {
+      display: none;
+    }
+
+    .eye-1 { width: 62%; height: 90px; top: 0; left: 2%; }
+    .eye-2 { width: 50%; height: 78px; top: 50px; right: 2%; }
+    .eye-3 { width: 65%; height: 80px; top: 110px; left: 10%; }
+    .eye-4 { width: 45%; height: 65px; top: 175px; right: 8%; }
+
+    .hero-status {
+      justify-content: center;
+    }
+
+    .about-content {
+      text-align: center;
+    }
+  }
+</style>

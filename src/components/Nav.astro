@@ -1,0 +1,111 @@
+---
+const navItems = [
+  { label: '首页', href: '/' },
+  { label: '作品', href: '/#works' },
+  { label: '画廊', href: '/gallery' },
+  { label: '留言板', href: '/guestbook' },
+  { label: '关于', href: '/about' },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="nav">
+  <div class="nav-inner container">
+    <a href="/" class="nav-logo">Hein</a>
+    <ul class="nav-links">
+      {navItems.map(item => (
+        <li>
+          <a
+            href={item.href}
+            class:list={['nav-link', { active: currentPath === item.href }]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 56px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(10, 10, 15, 0.75);
+    border-bottom: 1px solid var(--line-subtle);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text-1);
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+  }
+
+  .nav-logo:hover {
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--text-3);
+    position: relative;
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s var(--ease-out-expo), left 0.3s var(--ease-out-expo);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--accent);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+    left: 0;
+  }
+
+  @media (max-width: 640px) {
+    .nav-links {
+      gap: 1.25rem;
+    }
+
+    .nav-link {
+      font-size: 0.75rem;
+    }
+  }
+</style>
