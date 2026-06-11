@@ -392,6 +392,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    background: var(--paper);
   }
   .page-view + .page-view {
     border-top: 1px dashed #cdd5e0;
@@ -416,11 +417,11 @@
     flex: 1; display: grid;
     grid-template-columns: 1.05fr 0.95fr;
     grid-template-rows: 1fr auto;
-    gap: 28px 40px;
+    gap: 24px 40px;
     align-items: center;
-    padding-bottom: 36px;
+    padding-bottom: 8px;
   }
-  .home-left { display: flex; flex-direction: column; justify-content: center; gap: 16px; padding-left: 8px; }
+  .home-left { display: flex; flex-direction: column; justify-content: center; gap: 12px; padding-left: 8px; }
   .home-eyebrow {
     font-family: var(--hand);
     color: var(--hot);
@@ -432,7 +433,7 @@
   .home h1 {
     font-family: var(--serif);
     font-weight: 500;
-    font-size: clamp(72px, 8.4vw, 122px);
+    font-size: clamp(64px, 8.4vw, 104px);
     margin: 0;
     color: var(--ink);
     letter-spacing: -0.015em;
@@ -450,7 +451,7 @@
     font-size: 16px;
     color: var(--ink-soft);
     max-width: 38ch;
-    line-height: 1.6;
+    line-height: 1.5;
   }
   .home .tag em { color: var(--hot); font-style: italic; }
   .home .meta-line {
@@ -523,7 +524,7 @@
     background: var(--paper-2);
     border: 2px solid;
     border-color: #fff #5a5a6a #5a5a6a #fff;
-    padding: 14px 16px;
+    padding: 10px 16px;
     text-decoration: none;
     color: var(--ink);
     cursor: pointer;
@@ -1187,7 +1188,7 @@
                     data-reactions-enabled="1"
                     data-emit-metadata="0"
                     data-input-position="top"
-                    data-theme="light"
+                    data-theme="gruvbox_light"
                     data-lang="zh-CN"
                     crossorigin="anonymous"
                     async></script>
